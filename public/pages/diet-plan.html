@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apex Fit</title>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/favicon/manifest.json">
+    <meta name="theme-color" content="#4285f4">
+
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="/styles/diet-plan.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="mobile-dashboard">
+        <!-- Updated Top Navigation -->
+        <nav class="mobile-nav">
+            <div class="nav-left">
+                <a href="/pages/dashboard.html" class="back-btn">
+                    <i class="fas fa-arrow-left"></i>
+                </a>
+                <div class="page-title">
+                    <i class="fas fa-utensils logo-icon"></i>
+                    <span class="app-title">Diet Plan</span>
+                </div>
+            </div>
+            <div class="user-profile">
+                <div class="user-info">
+                    <div class="skeleton-loader" id="userNameSkeleton"></div>
+                    <span id="userName" class="hidden">Loading...</span>
+                </div>
+            </div>
+        </nav>
+
+        <main class="mobile-content">
+            <!-- Updated Metrics Cards -->
+            <div class="metrics-section">
+                <div class="metrics-scroll">
+                    <div class="metric-card">
+                        <div class="metric-icon">
+                            <i class="fas fa-weight"></i>
+                        </div>
+                        <div class="metric-info">
+                            <h3>BMI</h3>
+                            <div class="skeleton-loader" id="bmiSkeleton"></div>
+                            <p id="userBmi" class="hidden">--</p>
+                        </div>
+                    </div>
+                    
+                    <div class="metric-card">
+                        <div class="metric-icon">
+                            <i class="fas fa-fire"></i>
+                        </div>
+                        <div class="metric-info">
+                            <h3>Daily Calories</h3>
+                            <div class="skeleton-loader" id="caloriesSkeleton"></div>
+                            <p id="dailyCalories" class="hidden">--</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Updated Nutrition Goals Section -->
+            <section class="nutrition-section">
+                <h2>Daily Nutrition Goals</h2>
+                <div class="nutrition-grid" id="nutritionGoals">
+                    <div class="skeleton-loader"></div>
+                    <div class="skeleton-loader"></div>
+                    <div class="skeleton-loader"></div>
+                </div>
+            </section>
+
+            <!-- Meal Plan -->
+            <section class="meals-section">
+                <h2>Meal Schedule</h2>
+                <div class="meals-timeline" id="mealSchedule">
+                    <!-- Will be populated by JavaScript -->
+                </div>
+            </section>
+
+            <!-- Hydration Tracker -->
+            <section class="hydration-section">
+                <h2>Hydration Tracker</h2>
+                <div class="hydration-tracker">
+                    <div class="water-progress">
+                        <div class="water-level" id="waterLevel"></div>
+                    </div>
+                    <div class="water-controls">
+                        <button class="water-btn" onclick="updateWater(-250)">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                        <div class="water-info">
+                            <span id="waterAmount">0</span>
+                            <span class="unit">ml</span>
+                        </div>
+                        <button class="water-btn" onclick="updateWater(250)">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav">
+            <a href="/pages/dashboard.html" class="nav-item">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="/pages/diet-plan.html" class="nav-item active">
+                <i class="fas fa-utensils"></i>
+                <span>Diet</span>
+            </a>
+            <a href="/pages/injury-prevention.html" class="nav-item">
+                <i class="fas fa-heartbeat"></i>
+                <span>Injury</span>
+            </a>
+            <a href="/pages/mental-health.html" class="nav-item">
+                <i class="fas fa-brain"></i>
+                <span>Mental</span>
+            </a>
+        </nav>
+    </div>
+
+    <script type="module" src="/js/diet-plan.js"></script>
+</body>
+</html>

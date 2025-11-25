@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yo-Yo Test - Apex Fit</title>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/favicon/manifest.json">
+    <meta name="theme-color" content="#4285f4">
+
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="/styles/yoyo-test.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-running logo-icon"></i>
+                <span>Apex Fit</span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="yoyo-wrapper">
+        <div class="container">
+            <div class="yoyo-card">
+                <div class="card-header">
+                    <h1>Yo-Yo Test Assessment</h1>
+                    <p class="subtitle">Let's analyze your fitness level with our AI-powered assessment</p>
+                </div>
+
+                <div class="progress-tracker">
+                    <div class="progress-step active" data-step="1">
+                        <div class="step-number">1</div>
+                        <div class="step-label">Sprint Ability</div>
+                    </div>
+                    <div class="progress-step" data-step="2">
+                        <div class="step-number">2</div>
+                        <div class="step-label">Endurance</div>
+                    </div>
+                    <div class="progress-step" data-step="3">
+                        <div class="step-number">3</div>
+                        <div class="step-label">Recovery</div>
+                    </div>
+                </div>
+
+                <form id="yoyoTestForm" class="assessment-form">
+                    <!-- Questions will be dynamically shown/hidden -->
+                    <div class="question-container" id="question1">
+                        <div class="question-header">
+                            <div class="question-icon">
+                                <i class="fas fa-running"></i>
+                            </div>
+                            <h2>Sprint Ability Assessment</h2>
+                            <p class="description">Let's evaluate your speed and agility</p>
+                        </div>
+                        <div class="form-group">
+                            <label>How fast can you run 20 meters?</label>
+                            <select id="sprintTime" required>
+                                <option value="">Select your average time</option>
+                                <option value="elite">Less than 3 seconds (Elite)</option>
+                                <option value="advanced">3-4 seconds (Advanced)</option>
+                                <option value="intermediate">4-5 seconds (Intermediate)</option>
+                                <option value="beginner">More than 5 seconds (Beginner)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="question-container hidden" id="question2">
+                        <div class="question-header">
+                            <div class="question-icon">
+                                <i class="fas fa-heartbeat"></i>
+                            </div>
+                            <h2>Endurance Assessment</h2>
+                            <p class="description">Understanding your stamina levels</p>
+                        </div>
+                        <div class="form-group">
+                            <label>How long can you run continuously?</label>
+                            <select id="enduranceTime" required>
+                                <option value="">Select your endurance level</option>
+                                <option value="elite">More than 20 minutes</option>
+                                <option value="advanced">10-20 minutes</option>
+                                <option value="intermediate">5-10 minutes</option>
+                                <option value="beginner">Less than 5 minutes</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="question-container hidden" id="question3">
+                        <div class="question-header">
+                            <div class="question-icon">
+                                <i class="fas fa-sync-alt"></i>
+                            </div>
+                            <h2>Recovery Assessment</h2>
+                            <p class="description">How well do you recover from intense activity?</p>
+                        </div>
+                        <div class="form-group">
+                            <label>After sprinting, how quickly does your heart rate return to normal?</label>
+                            <select id="recoveryTime" required>
+                                <option value="">Select your recovery time</option>
+                                <option value="elite">Less than 30 seconds</option>
+                                <option value="advanced">30 seconds - 1 minute</option>
+                                <option value="intermediate">1-2 minutes</option>
+                                <option value="beginner">More than 2 minutes</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="question-container hidden" id="question4">
+                        <div class="question-header">
+                            <div class="question-icon">
+                                <i class="fas fa-dumbbell"></i>
+                            </div>
+                            <h2>Training Frequency Assessment</h2>
+                            <p class="description">How often do you train per week?</p>
+                        </div>
+                        <div class="form-group">
+                            <label>How often do you train per week?</label>
+                            <select id="trainingFrequency" required>
+                                <option value="">Select training frequency</option>
+                                <option value="elite">6+ times per week</option>
+                                <option value="advanced">4-5 times per week</option>
+                                <option value="intermediate">2-3 times per week</option>
+                                <option value="beginner">0-1 times per week</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="question-container hidden" id="question5">
+                        <div class="question-header">
+                            <div class="question-icon">
+                                <i class="fas fa-tired"></i>
+                            </div>
+                            <h2>Fatigue Assessment</h2>
+                            <p class="description">How quickly do you feel fatigued during intense training?</p>
+                        </div>
+                        <div class="form-group">
+                            <label>How quickly do you feel fatigued during intense training?</label>
+                            <select id="fatigueRate" required>
+                                <option value="">Select fatigue rate</option>
+                                <option value="elite">After 45+ minutes</option>
+                                <option value="advanced">After 30-45 minutes</option>
+                                <option value="intermediate">After 15-30 minutes</option>
+                                <option value="beginner">Under 15 minutes</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="question-container hidden" id="question6">
+                        <div class="question-header">
+                            <div class="question-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <h2>Recovery Rate Assessment</h2>
+                            <p class="description">How long do you need to recover between training sessions?</p>
+                        </div>
+                        <div class="form-group">
+                            <label>How long do you need to recover between training sessions?</label>
+                            <select id="recoveryRate" required>
+                                <option value="">Select recovery rate</option>
+                                <option value="elite">Less than 12 hours</option>
+                                <option value="advanced">12-24 hours</option>
+                                <option value="intermediate">24-48 hours</option>
+                                <option value="beginner">More than 48 hours</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" id="prevBtn" class="btn btn-outline" disabled>
+                            <i class="fas fa-arrow-left"></i> Previous
+                        </button>
+                        <button type="button" id="nextBtn" class="btn btn-primary">
+                            Next <i class="fas fa-arrow-right"></i>
+                        </button>
+                        <button type="submit" id="submitBtn" class="btn btn-primary pulse hidden">
+                            Calculate Score <i class="fas fa-calculator"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script type="module" src="/js/yoyo-test.js"></script>
+</body>
+</html>

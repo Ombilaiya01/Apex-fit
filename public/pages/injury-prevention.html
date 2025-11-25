@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apex Fit</title>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/favicon/manifest.json">
+    <meta name="theme-color" content="#4285f4">
+
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="/styles/injury-prevention.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="mobile-dashboard">
+        <!-- Top Navigation -->
+        <nav class="mobile-nav">
+            <div class="nav-left">
+                <a href="/pages/dashboard.html" class="back-btn">
+                    <i class="fas fa-arrow-left"></i>
+                </a>
+                <div class="page-title">
+                    <i class="fas fa-heartbeat logo-icon"></i>
+                    <span class="app-title">Injury Prevention</span>
+                </div>
+            </div>
+            <div class="user-info">
+                <span id="userName">Loading...</span>
+            </div>
+        </nav>
+
+        <main class="mobile-content">
+            <!-- Risk Assessment Card -->
+            <section class="risk-assessment-card">
+                <h2>Quick Risk Assessment</h2>
+                <div class="assessment-metrics">
+                    <div class="metric">
+                        <i class="fas fa-running"></i>
+                        <div class="metric-info">
+                            <label>Activity Level</label>
+                            <span id="activityLevel">Loading...</span>
+                        </div>
+                    </div>
+                    <div class="metric">
+                        <i class="fas fa-chart-line"></i>
+                        <div class="metric-info">
+                            <label>Risk Level</label>
+                            <span id="riskLevel">Loading...</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Injury Form -->
+            <form id="injuryAssessmentForm" class="injury-form">
+                <section class="form-section">
+                    <h3>Current Condition</h3>
+                    <div class="form-group">
+                        <label>Are you experiencing any pain?</label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="pain" value="yes">
+                                <span>Yes</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="pain" value="no">
+                                <span>No</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div id="painDetails" class="form-group hidden">
+                        <label>Pain Location</label>
+                        <div class="body-map">
+                            <button type="button" class="body-part" data-part="shoulder">Shoulder</button>
+                            <button type="button" class="body-part" data-part="knee">Knee</button>
+                            <button type="button" class="body-part" data-part="ankle">Ankle</button>
+                            <button type="button" class="body-part" data-part="back">Back</button>
+                            <button type="button" class="body-part" data-part="other">Other</button>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="form-section">
+                    <h3>Training History</h3>
+                    <div class="form-group">
+                        <label>Weekly Training Hours</label>
+                        <select name="trainingHours" required>
+                            <option value="">Select hours</option>
+                            <option value="0-5">0-5 hours</option>
+                            <option value="5-10">5-10 hours</option>
+                            <option value="10-15">10-15 hours</option>
+                            <option value="15+">15+ hours</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Recent Injuries (last 3 months)</label>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="recentInjuries" value="none">
+                                <span>No injuries</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="recentInjuries" value="strain">
+                                <span>Muscle strain</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="recentInjuries" value="sprain">
+                                <span>Sprain</span>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+
+                <button type="submit" class="submit-btn">
+                    <span>Get Prevention Plan</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+            </form>
+
+            <!-- Prevention Plan (Initially Hidden) -->
+            <section id="preventionPlan" class="prevention-plan hidden">
+                <div class="markdown-content">
+                    <!-- AI response will be rendered here with markdown formatting -->
+                </div>
+            </section>
+        </main>
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav">
+            <a href="/pages/dashboard.html" class="nav-item">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="/pages/diet-plan.html" class="nav-item">
+                <i class="fas fa-utensils"></i>
+                <span>Diet</span>
+            </a>
+            <a href="/pages/injury-prevention.html" class="nav-item active">
+                <i class="fas fa-heartbeat"></i>
+                <span>Injury</span>
+            </a>
+            <a href="/pages/mental-health.html" class="nav-item">
+                <i class="fas fa-brain"></i>
+                <span>Mental</span>
+            </a>
+        </nav>
+    </div>
+
+    <script type="module" src="/js/injury-prevention.js"></script>
+</body>
+</html>

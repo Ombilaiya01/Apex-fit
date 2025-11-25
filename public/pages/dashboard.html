@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Apex Fit</title>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/favicon/manifest.json">
+    <meta name="theme-color" content="#4285f4">
+
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="/styles/dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="module" src="/js/config/gemini-config.js"></script>
+</head>
+<body>
+    <div class="mobile-dashboard">
+        <!-- Top Navigation -->
+        <nav class="mobile-nav">
+            <div class="nav-left">
+                <i class="fas fa-running logo-icon"></i>
+                <span class="app-title">Apex Fit</span>
+            </div>
+            <div id="userInfo" class="user-info">
+                <span id="userName">Loading...</span>
+                <i class="fas fa-chevron-down"></i>
+                <div class="user-dropdown">
+                    <button id="logoutBtn" class="logout-btn">
+                        <i class="fas fa-sign-out-alt"></i>
+                        Logout
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="mobile-content">
+            <!-- Performance Overview Cards -->
+            <div class="scroll-cards">
+                <div class="stat-card yoyo-card">
+                    <div class="card-icon">
+                        <i class="fas fa-tachometer-alt"></i>
+                    </div>
+                    <div class="card-info">
+                        <h3>Yo-Yo Score</h3>
+                        <p id="yoyoScore" class="score">--</p>
+                    </div>
+                    <button id="takeTestBtn" class="action-btn">
+                        <i class="fas fa-play"></i>
+                    </button>
+                </div>
+
+                <div class="stat-card level-card">
+                    <div class="card-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <div class="card-info">
+                        <h3>Level</h3>
+                        <p id="performanceLevel" class="score">--</p>
+                    </div>
+                </div>
+
+                <div class="stat-card motivation-card">
+                    <div class="card-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <div class="card-info">
+                        <p id="motivationQuote" class="quote">Keep pushing!</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Performance Chart -->
+            <section class="chart-section">
+                <h2>Performance</h2>
+                <div class="chart-container">
+                    <canvas id="performanceBar"></canvas>
+                </div>
+            </section>
+
+            <!-- AI Recommendations -->
+            <section class="recommendations-section">
+                <h2>AI Coach Tips</h2>
+                <div class="recommendations-container" id="recommendations">
+                    <!-- Recommendations will be inserted here -->
+                </div>
+            </section>
+        </main>
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav">
+            <a href="/pages/dashboard.html" class="nav-item active">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="/pages/diet-plan.html" class="nav-item">
+                <i class="fas fa-utensils"></i>
+                <span>Diet</span>
+            </a>
+            <a href="/pages/injury-prevention.html" class="nav-item">
+                <i class="fas fa-heartbeat"></i>
+                <span>Injury</span>
+            </a>
+            <a href="/pages/mental-health.html" class="nav-item">
+                <i class="fas fa-brain"></i>
+                <span>Mental</span>
+            </a>
+        </nav>
+    </div>
+
+    <script type="module" src="/js/config/firebase-config.js"></script>
+    <script type="module" src="/js/dashboard.js"></script>
+</body>
+</html>

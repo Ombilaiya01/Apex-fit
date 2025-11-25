@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apex Fit - Powered by Google Gemini</title>
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/favicon/manifest.json">
+    <meta name="theme-color" content="#4285f4">
+
+
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/landing.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="landing-wrapper">
+        <!-- Navigation Bar -->
+        <nav class="navbar">
+            <div class="container">
+                <div class="logo">
+                    <i class="fas fa-running logo-icon"></i>
+                    <span>Apex Fit</span>
+                </div>
+                <div class="auth-buttons">
+                    <button id="loginBtn" class="btn btn-primary">
+                        <i class="fas fa-sign-in-alt"></i>
+                        Login
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <header class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>AI-Powered <span class="highlight">Performance</span> Coach In Your Pocket</h1>
+                    <p class="subtitle">Train smarter with personalized AI insights powered by Google Gemini technology</p>
+                    <div class="cta-buttons">
+                        <button class="btn btn-primary btn-large pulse">Start Your Journey</button>
+                    </div>
+                    <div class="powered-by">
+                        <span>Powered by</span>
+                        <div class="tech-badges">
+                            <div class="badge">
+                                <i class="fab fa-google"></i>
+                                <span>Google Cloud</span>
+                            </div>
+                            <div class="badge">
+                                <i class="fas fa-brain"></i>
+                                <span>Gemini AI</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="dashboard-preview">
+                        <img src="images/dashboard.png" alt="App Dashboard Preview">
+                    </div>
+                </div>
+            </div>
+            <div class="hero-bg"></div>
+        </header>
+        
+        <!-- Features Section -->
+        <section class="features">
+            <div class="container">
+                <h2>Unlock Your Athletic Potential</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="icon-container icon-blue">
+                            <i class="fas fa-running"></i>
+                        </div>
+                        <h3>Yo-Yo Test Predictor</h3>
+                        <p>AI-powered performance evaluation and level prediction</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon-container icon-green">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h3>Mental Coaching</h3>
+                        <p>24/7 AI support for motivation and mental wellness</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon-container icon-red">
+                            <i class="fas fa-heartbeat"></i>
+                        </div>
+                        <h3>Injury Prevention</h3>
+                        <p>Smart recovery plans and personalized risk assessment</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon-container icon-yellow">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <h3>Diet Planning</h3>
+                        <p>Custom nutrition plans optimized for your performance goals</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <span>Apex Fit</span>
+                    <p>AI-powered athlete management system</p>
+                    <a href="https://github.com/CoderYUI/athelete-managment" class="github-box">
+                        <i class="fab fa-github"></i>
+                        <span>Check this repo for the project...</span>
+                    </a>
+                </div>
+                <div class="footer-tech">
+                    <h3>Built with</h3>
+                    <ul>
+                        <li><i class="fab fa-google"></i> Google Cloud Platform</li>
+                        <li><i class="fas fa-brain"></i> Gemini AI</li>
+                        <li><i class="fas fa-fire"></i> Firebase</li>
+                    </ul>
+                </div>
+                <div class="footer-team">
+                    <h4>Team Apex</h4>
+                    <p>Project created for EPICS VITB</p>
+                    <!-- <img src="images/GoogleSolutionChallenge_Logo.png" alt="Google Solutions Challenge" class="challenge-badge"> -->
+                    <!-- <img src="images/TeamViTERA_logo.png" alt="Team ViTera" class="logo-badge"> -->
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2025 Team Apex. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module" src="/js/config/firebase-config.js"></script>
+    <script type="module" src="/js/auth/login.js"></script>
+</body>
+</html>

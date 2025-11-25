@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apex Fit - Chatbot</title>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/favicon/manifest.json">
+    <meta name="theme-color" content="#4285f4">
+
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="/styles/mental-health.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="mobile-dashboard">
+        <!-- Top Navigation -->
+        <nav class="mobile-nav">
+            <div class="nav-left">
+                <a href="/pages/dashboard.html" class="back-btn">
+                    <i class="fas fa-arrow-left"></i>
+                </a>
+                <div class="page-title">
+                    <i class="fas fa-brain logo-icon"></i>
+                    <span class="app-title">Mental Health</span>
+                </div>
+            </div>
+            <div class="user-info">
+                <span id="userName">Loading...</span>
+            </div>
+        </nav>
+
+        <main class="mobile-content">
+            <!-- Quick Stats -->
+            <section class="stats-section">
+                <div class="stats-scroll">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div class="stat-info">
+                            <label>Level</label>
+                            <span id="userLevel">Loading...</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="stat-info">
+                            <label>Score</label>
+                            <span id="yoyoScore">Loading...</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Daily Quote -->
+            <section class="quote-section">
+                <div class="quote-card">
+                    <i class="fas fa-quote-left quote-icon"></i>
+                    <p id="dailyQuote">Loading your daily motivation...</p>
+                </div>
+            </section>
+
+            <!-- Chat Section -->
+            <section class="chat-section">
+                <div class="chat-messages" id="chatMessages">
+                    <div class="bot-message welcome-message">
+                        <div class="message-content">
+                            <i class="fas fa-robot bot-icon"></i>
+                            <p>Hi! I'm your AI Mental Fitness Coach. How are you feeling today?</p>
+                        </div>
+                        <div class="quick-replies">
+                            <button class="reply-btn" onclick="handleQuickReply('I\'m feeling great! 😊 Ready to train and improve.')">😊 Great</button>
+                            <button class="reply-btn" onclick="handleQuickReply('I\'m feeling okay. Could use some motivation.')">😐 Okay</button>
+                            <button class="reply-btn" onclick="handleQuickReply('I\'m not feeling good today. Need some support.')">😔 Not Good</button>
+                        </div>
+                    </div>
+                </div>
+                <form id="chatForm" class="chat-input">
+                    <input type="text" id="userInput" placeholder="Type your message..." required>
+                    <button type="submit" class="send-btn">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </form>
+            </section>
+        </main>
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav">
+            <a href="/pages/dashboard.html" class="nav-item">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="/pages/diet-plan.html" class="nav-item">
+                <i class="fas fa-utensils"></i>
+                <span>Diet</span>
+            </a>
+            <a href="/pages/injury-prevention.html" class="nav-item">
+                <i class="fas fa-heartbeat"></i>
+                <span>Injury</span>
+            </a>
+            <a href="/pages/mental-health.html" class="nav-item active">
+                <i class="fas fa-brain"></i>
+                <span>Mental</span>
+            </a>
+        </nav>
+    </div>
+    
+    <script type="module" src="/js/mental-health.js"></script>
+</body>
+</html>
