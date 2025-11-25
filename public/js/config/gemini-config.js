@@ -1,6 +1,5 @@
 import { GoogleGenerativeAI } from "https://esm.run/@google/generative-ai";
 
-const GEMINI_API_KEY = 'AIzaSyBU6pN9kIyTFVjm1buKSsyvRM4Z51XU8Fw';
 const API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent';
 const MAX_RETRIES = 3;
 const RETRY_DELAY = 2000; // Increased to 2 seconds
