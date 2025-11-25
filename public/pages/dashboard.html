@@ -23,8 +23,10 @@
         <!-- Top Navigation -->
         <nav class="mobile-nav">
             <div class="nav-left">
-                <i class="fas fa-running logo-icon"></i>
-                <span class="app-title">Apex Fit</span>
+                <div id="homeLogo" style="cursor:pointer;display:inline-flex;align-items:center;gap:8px;">
+                    <i class="fas fa-running logo-icon"></i>
+                    <span class="app-title">Apex Fit</span>
+                </div>
             </div>
             <div id="userInfo" class="user-info">
                 <span id="userName">Loading...</span>
@@ -115,5 +117,10 @@
 
     <script type="module" src="/js/config/firebase-config.js"></script>
     <script type="module" src="/js/dashboard.js"></script>
+        <script>
+            document.getElementById('homeLogo').onclick = function() {
+                window.location.href = '/index.html';
+            };
+        </script>
 </body>
 </html>
