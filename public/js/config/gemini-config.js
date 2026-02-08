@@ -1,6 +1,6 @@
-import { GoogleGenerativeAI } from "https://esm.run/@google/generative-ai";
-
 const API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent';
+// Read API key from environment (Vite) with fallback to an empty string
+const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY || '';
 const MAX_RETRIES = 3;
 const RETRY_DELAY = 2000; // Increased to 2 seconds
 
@@ -9,6 +9,8 @@ export async function getGeminiResponse(prompt) {
         try {
             console.log(`Attempt ${attempt} of ${MAX_RETRIES}`);
             
+            if (!GEMINI_API_KEY) throw new Error('GEMINI_API_KEY is not defined');
+
             const response = await fetch(`${API_URL}?key=${GEMINI_API_KEY}`, {
                 method: 'POST',
                 headers: {
@@ -76,6 +78,11 @@ function getFallbackResponse(prompt) {
 * Pre-workout: Light carbs
 * Post-workout: Protein & carbs
 * Throughout day: Regular meals`;
+    }
+
+    // If the prompt requests exactly 4 recommendations (yoyo-test), return numbered 0-3 format
+    if (promptLower.includes('provide 4') || promptLower.includes('4 clear recommendations')) {
+        return `0. General: Focus on balanced training to improve overall fitness and recovery\n1. Speed Work: Include short high-intensity sprints (6-8 x 30s) with full recovery\n2. Endurance: Add one longer tempo run or circuit session per week (30-45 mins)\n3. Recovery: Implement post-workout stretching and 24-48h active recovery protocols`;
     }
 
     // Default response for mental health/motivation
