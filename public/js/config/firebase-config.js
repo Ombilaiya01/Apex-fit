@@ -6,13 +6,13 @@ import { getFirestore } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase
 // Firebase configuration
 // Use environment variable for API key for security
 const firebaseConfig = {
-    apiKey: import.meta.env.VITE_FIREBASE_API_KEY || "AIzaSyBwI-pYxtvBnHI3SzEbr3Pa81sbsGqSZFM",
-    authDomain: "athelete-management-c991a.firebaseapp.com",
-    projectId: "athelete-management-c991a",
-    storageBucket: "athelete-management-c991a.firebasestorage.app",
-    messagingSenderId: "1095205765222",
-    appId: "1:1095205765222:web:8651aa1ee1341254452da7",
-    measurementId: "G-J2Y006DEYM"
+    apiKey: import.meta.env.VITE_FIREBASE_API_KEY || "AIzaSyAUH6fUPWSN3NNe1_ealxv8jnuvrWHe0YM",
+    authDomain: "apex-2789f.firebaseapp.com",
+    projectId: "apex-2789f",
+    storageBucket: "apex-2789f.firebasestorage.app",
+    messagingSenderId: "111701376788",
+    appId: "1:111701376788:web:8f9da099a2df3b0dd68c01",
+    measurementId: "G-3ZV6WWBFKT"
   };
 
 // Initialize Firebase
