@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: apex-fit
+    env: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm run preview
+    envVars:
+      - key: VITE_FIREBASE_API_KEY
+        sync: false
+    staticFilesDirectory: dist
+    routes:
+      - path: /
+        destination: /index.html
