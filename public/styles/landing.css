@@ -573,3 +573,37 @@
         margin-top: 2rem;
     }
 }
+
+/* Message Styles */
+#message {
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    padding: 16px 24px;
+    border-radius: var(--radius-md);
+    font-weight: 500;
+    box-shadow: var(--shadow-lg);
+    animation: slideIn 0.3s ease;
+    z-index: 1001;
+}
+
+#message.success {
+    background-color: #10b981;
+    color: white;
+}
+
+#message.error {
+    background-color: #ef4444;
+    color: white;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(400px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}

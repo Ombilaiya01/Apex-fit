@@ -17,6 +17,9 @@ document.addEventListener('DOMContentLoaded', () => {
         button.classList.add('loading');
         try {
             const provider = new GoogleAuthProvider();
+            // Set language to device language
+            auth.languageCode = navigator.language;
+            
             const result = await signInWithPopup(auth, provider);
             
             if (result.user) {
@@ -43,7 +46,20 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         } catch (error) {
             console.error('Login error:', error);
-            showMessage('Login failed: ' + error.message, true);
+            console.error('Error code:', error.code);
+            console.error('Error message:', error.message);
+            
+            // Provide user-friendly error messages
+            let userMessage = 'Login failed: ' + error.message;
+            if (error.code === 'auth/invalid-continue-uri') {
+                userMessage = 'Auth redirectURI not configured. Check Firebase Console → Authentication → Authorized domains.';
+            } else if (error.code === 'auth/operation-not-allowed') {
+                userMessage = 'Google Sign-in is not enabled. Check Firebase Console.';
+            } else if (error.code === 'auth/popup-blocked') {
+                userMessage = 'Please allow popups to login with Google.';
+            }
+            
+            showMessage(userMessage, true);
         } finally {
             button.classList.remove('loading');
         }

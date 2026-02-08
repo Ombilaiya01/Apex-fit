@@ -3,3 +3,5 @@ node_modules
 Project.md
 dist
 package-lock.json
+.env
+.env.local

@@ -4,8 +4,9 @@ import { getAuth } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth
 import { getFirestore } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
 
 // Firebase configuration
+// Use environment variable for API key for security
 const firebaseConfig = {
-    apiKey: "AIzaSyC2hADJIFOHR_qAMB-kgsaRnBDQ7xPuj98",
+    apiKey: import.meta.env.VITE_FIREBASE_API_KEY || "AIzaSyBwI-pYxtvBnHI3SzEbr3Pa81sbsGqSZFM",
     authDomain: "athelete-management-c991a.firebaseapp.com",
     projectId: "athelete-management-c991a",
     storageBucket: "athelete-management-c991a.firebasestorage.app",
