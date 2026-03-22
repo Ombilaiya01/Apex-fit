@@ -1,7 +1,7 @@
-# Apex Fit: AI-Powered Athlete Management System
+# Apex-fit: AI-Powered System
 
 ## Overview
-Apex Fit is an AI-powered athlete management system designed to help athletes track performance, maintain proper nutrition, prevent injuries, and improve mental well-being. Built using Google Cloud technologies and Gemini AI, this platform provides personalized guidance and analytics to optimize athletic performance.
+Apex-fit is an AI-powered system designed to help athletes track performance, maintain proper nutrition, prevent injuries, and improve mental well-being. Built using Google Cloud technologies and Gemini AI, this platform provides personalized guidance and analytics to optimize athletic performance.
 
 ## 🌟 Features
 

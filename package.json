@@ -1,5 +1,5 @@
 {
-  "name": "athelete-management",
+  "name": "apex-fit",
   "version": "1.0.0",
   "type": "module",
   "main": "index.js",
@@ -39,5 +39,5 @@
   ],
   "author": "",
   "license": "ISC",
-  "description": "AI-powered athlete management system"
+  "description": "AI-powered Apex-fit system"
 }
