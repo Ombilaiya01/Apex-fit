@@ -1,4 +1,4 @@
-const key = "AIzaSyB9NcW3FYyq-pBjJMFISVStChMa8D1olrI";
+const key = "YOUR_API_KEY_HERE";
 
 async function listModels() {
     try {
