@@ -1,4 +1,4 @@
-const API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent';
+const API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent';
 // Read API key from environment (Vite) with fallback to an empty string
 const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY || '';
 const MAX_RETRIES = 3;
