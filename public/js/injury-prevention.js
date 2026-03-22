@@ -1,4 +1,5 @@
 import { auth, db } from './config/firebase-config.js';
+import './profile.js';
 import { doc, setDoc, getDoc } from 'firebase/firestore';
 import { getGeminiResponse } from './config/gemini-config.js';
 
