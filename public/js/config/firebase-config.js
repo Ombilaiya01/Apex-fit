@@ -6,7 +6,7 @@ import { getFirestore } from 'firebase/firestore';
 // Firebase configuration
 // Use environment variable for API key for security
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY || "AIzaSyAUH6fUPWSN3NNe1_ealxv8jnuvrWHe0YM",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY || "",
   authDomain: "apex-2789f.firebaseapp.com",
   projectId: "apex-2789f",
   storageBucket: "apex-2789f.firebasestorage.app",
