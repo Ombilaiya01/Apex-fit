@@ -1,5 +1,5 @@
 import { auth, db } from './config/firebase-config.js';
-import { doc, getDoc, setDoc } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { getGeminiResponse, markdownToHtml } from './config/gemini-config.js';
 
 // Add conversation memory
@@ -66,12 +66,12 @@ document.addEventListener('DOMContentLoaded', async () => {
         try {
             const userDoc = await getDoc(doc(db, 'users', user.uid));
             userData = userDoc.data();
-            
+
             // Update UI with user data
             userNameElement.textContent = user.displayName || 'Athlete';
             document.getElementById('userLevel').textContent = userData.lastYoyoTest?.level || 'N/A';
             document.getElementById('yoyoScore').textContent = userData.lastYoyoTest?.score || 'N/A';
-            
+
             // Get daily motivation
             getDailyMotivation(userData);
         } catch (error) {
@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         try {
             const response = await getGeminiResponse(getChatPrompt(message, userData));
-            
+
             // Process response before displaying
             const processedResponse = processResponse(response, message);
             addMessage('bot', processedResponse);
@@ -137,8 +137,14 @@ function addMessage(type, content) {
     const messageDiv = document.createElement('div');
     messageDiv.className = `${type}-message`;
 
+    // Cleanup excessive whitespace hallucinated by experimental models
+    const cleanContent = content
+        .replace(/[ \t]{2,}/g, ' ') // collapse multiple spaces
+        .replace(/\n{3,}/g, '\n\n') // collapse 3+ newlines into 2
+        .trim();
+
     // Format the content
-    const formattedContent = content
+    const formattedContent = cleanContent
         .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
         .replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" class="feature-link">$1</a>')
         .replace(/\n/g, '<br>');
@@ -166,7 +172,7 @@ function formatMessage(content) {
 
 // Update the chat prompt to be more focused and structured
 const getChatPrompt = (message, userData) => `
-You are an AI Mental Fitness Coach. The athlete has this profile:
+You are an AI Mental Health and Fitness Coach for an athlete. The athlete has this profile:
 Sport: ${userData?.sport || 'General'}
 Level: ${userData?.lastYoyoTest?.level || 'Beginner'}
 Recent Score: ${userData?.lastYoyoTest?.score || 'N/A'}/20
@@ -174,13 +180,14 @@ Recent Score: ${userData?.lastYoyoTest?.score || 'N/A'}/20
 Their message: "${message}"
 
 Rules for your response:
-1. Keep it under 3 sentences
-2. Be motivational but practical
-3. Reference their sport/level when relevant
-4. Use ** for important words
-5. If they mention specific features (diet, training, injury), provide a direct link to that feature
+1. Actively ask proactive questions about their sleep quality (e.g., "Did you sleep well last night?") and daily common health problems (e.g., stress, diet, hydration, muscle recovery).
+2. Relate your advice and questions specifically to their player data (their sport, level, and recent score).
+3. Be empathetic, conversational, and motivational.
+4. Keep it under 3 sentences to remain concise.
+5. Use ** for important words.
+6. If they mention specific features (diet, training, injury), provide a direct link to that feature.
 
-Respond in a way that shows you understand their concern and provide ONE clear action step.`;
+Respond in a way that shows you understand their concern, provide actionable advice, and ask a relevant follow-up question about their health, sleep, or performance data to keep the conversation engaging.`;
 
 async function getDailyMotivation(userData) {
     try {
@@ -197,9 +204,9 @@ async function getDailyMotivation(userData) {
 function getEmergencyResponse() {
     const responses = [
         "I understand this is a challenging moment. Remember, your mental health is paramount. Consider checking your performance dashboard for positive progress markers, or review your successful training history. Would you like to explore some quick mental wellness exercises?",
-        
+
         "As your mental wellness coach, I want to ensure you're supported. We can look at your progress together, review your nutrition plan for mood-boosting foods, or practice some confidence-building exercises. What would be most helpful right now?",
-        
+
         "Every champion faces moments of doubt. Let's focus on your strengths - your dedication to training, your improving Yo-Yo test scores, and your commitment to mental wellness. Shall we review your achievements together?"
     ];
     return responses[Math.floor(Math.random() * responses.length)];
@@ -210,7 +217,7 @@ async function saveConversation(userMessage, botResponse) {
     try {
         const conversationRef = doc(db, 'mental_health_chats', auth.currentUser.uid);
         const timestamp = new Date().toISOString();
-        
+
         await setDoc(conversationRef, {
             [`conversations.${timestamp}`]: {
                 user: userMessage,
@@ -230,7 +237,7 @@ async function saveConversation(userMessage, botResponse) {
 // Add feature detection and UI updates
 function handleFeatureReference(userMessage, botResponse) {
     const message = userMessage.toLowerCase();
-    
+
     if (message.includes('diet') || message.includes('nutrition') || message.includes('food')) {
         showFeaturePrompt('pages/diet-plan', 'Would you like to see your personalized diet plan?');
     } else if (message.includes('injury') || message.includes('pain')) {
@@ -253,7 +260,7 @@ function showFeaturePrompt(feature, message) {
 // Add new function to process responses
 function processResponse(response, userMessage) {
     let processedResponse = response;
-    
+
     // Check for feature references
     if (userMessage.toLowerCase().includes('diet')) {
         processedResponse += '\n\n[View Your Diet Plan](/pages/diet-plan.html)';
@@ -267,15 +274,15 @@ function processResponse(response, userMessage) {
 }
 
 // Add this function to handle quick replies
-window.handleQuickReply = async function(message) {
+window.handleQuickReply = async function (message) {
     // Display user message
     addMessage('user', message);
 
     try {
         const response = await getGeminiResponse(
             `The athlete says: "${message}". 
-             Provide a brief, empathetic response and a specific action step.
-             Keep it under 3 sentences and focus on motivation and mental wellness.`
+             Provide a brief, empathetic response, a specific action step, and ask a follow-up question about their sleep, daily health, or performance data.
+             Keep it under 3 sentences and focus on motivation, mental wellness, and daily health habits.`
         );
         addMessage('bot', response);
     } catch (error) {

@@ -1,5 +1,5 @@
 import { auth, db } from './config/firebase-config.js';
-import { doc, setDoc } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+import { doc, setDoc } from 'firebase/firestore';
 import { getGeminiResponse, markdownToHtml } from './config/gemini-config.js';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const showQuestion = (questionNumber) => {
         // Hide all questions first
         document.querySelectorAll('.question-container').forEach(q => q.classList.add('hidden'));
-        
+
         // Show current question
         const currentQuestionElement = document.getElementById(`question${questionNumber}`);
         if (currentQuestionElement) {
@@ -34,10 +34,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 step.classList.remove('active', 'completed');
             }
         });
-        
+
         // Update button visibility
         if (prevBtn) prevBtn.disabled = questionNumber === 1;
-        
+
         if (nextBtn && submitBtn) {
             if (questionNumber === totalQuestions) {
                 nextBtn.classList.add('hidden'); // Change display:none to hidden class
@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 alert('Please select an option before proceeding');
                 return;
             }
-            
+
             if (currentQuestion < totalQuestions) {
                 currentQuestion++;
                 showQuestion(currentQuestion);
@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const recoveryRateScore = scores[responses.recoveryRate];
 
         // Calculate total score (out of 20)
-        const totalScore = ((sprintScore + enduranceScore + recoveryScore + 
+        const totalScore = ((sprintScore + enduranceScore + recoveryScore +
             trainingScore + fatigueScore + recoveryRateScore) / 24) * 20;
 
         // Calculate individual performance metrics
@@ -157,7 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
             Format your response as a numbered list with exactly 3 recommendations.`;
 
             const response = await getGeminiResponse(prompt);
-            
+
             // Extract recommendations from AI response
             const recommendations = response.split('\n')
                 .filter(line => line.trim() && line.match(/^\d+\.|[-•]/))
@@ -200,7 +200,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Handle form submission
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
-        
+
         // Validation checks
         const allSelects = form.querySelectorAll('select');
         let allAnswered = true;
@@ -254,7 +254,7 @@ Provide 4 clear recommendations in exactly this format:
 Keep each recommendation clear and actionable.`;
 
                 const aiResponse = await getGeminiResponse(prompt);
-                
+
                 // Improved response processing
                 const recommendations = aiResponse
                     .split('\n')

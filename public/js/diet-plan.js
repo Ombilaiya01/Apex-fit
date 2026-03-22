@@ -1,5 +1,5 @@
 import { auth, db } from './config/firebase-config.js';
-import { doc, getDoc, setDoc } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { getGeminiResponse } from './config/gemini-config.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 <button onclick="window.location.reload()" class="btn btn-primary">Retry</button>
             </div>
         `;
-        
+
         containers.forEach(id => {
             const container = document.getElementById(id);
             if (container) container.innerHTML = errorHtml;
@@ -135,7 +135,7 @@ async function displayNutritionPlan(userId, userData, assessmentData) {
     try {
         // Check for existing plan
         const dietPlanDoc = await getDoc(doc(db, 'diet_plans', userId));
-        
+
         if (dietPlanDoc.exists()) {
             const plan = dietPlanDoc.data();
             displayPlan(plan);
@@ -257,7 +257,7 @@ DAILY MEALS
 function processDietPlanResponse(response) {
     try {
         const [macrosSection, mealsSection] = response.split('DAILY MEALS');
-        
+
         // Process macros
         const macros = macrosSection.split('\n')
             .filter(line => line.includes(':'))
@@ -292,7 +292,7 @@ function processDietPlanResponse(response) {
                 return acc;
             }, []);
 
-        return { 
+        return {
             recommendations: macros,
             meals: meals
         };
@@ -369,7 +369,7 @@ function displayDietPlan({ recommendations, meals }) {
                 </div>
             `).join('')}
         </div>`;
-    
+
     // Display meals with icons
     const mealsHtml = `
         <div class="meals-grid">

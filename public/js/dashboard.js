@@ -1,5 +1,5 @@
 import { auth, db } from './config/firebase-config.js';
-import { doc, getDoc } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+import { doc, getDoc } from 'firebase/firestore';
 import { getGeminiResponse } from './config/gemini-config.js';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -62,13 +62,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     // Update score and level
                     elements.yoyoScore.textContent = data.lastYoyoTest.score;
                     elements.performanceLevel.textContent = data.lastYoyoTest.level;
-                    
+
                     // Generate motivation based on score
                     setMotivationalQuote(data.lastYoyoTest.level, data.lastYoyoTest.score);
-                    
+
                     // Initialize simplified bar chart
                     initializeBarChart(data.lastYoyoTest.metrics);
-                    
+
                     // Display recommendations
                     if (data.lastYoyoTest.recommendations?.length > 0) {
                         displayRecommendations(data.lastYoyoTest.recommendations);
@@ -137,7 +137,7 @@ function setMotivationalQuote(level, score) {
             "Setting the standard for others"
         ]
     };
-    
+
     // Select a quote based on level
     const levelQuotes = quotes[level] || quotes['Beginner'];
     const randomIndex = Math.floor(Math.random() * levelQuotes.length);
@@ -150,7 +150,7 @@ function initializeBarChart(metrics) {
     if (!barCtx) return;
 
     const ctx = barCtx.getContext('2d');
-    
+
     // Destroy existing chart if it exists
     if (window.performanceChart) {
         window.performanceChart.destroy();
@@ -164,8 +164,8 @@ function initializeBarChart(metrics) {
             datasets: [{
                 label: 'Your Performance',
                 data: [
-                    metrics.speed || 0, 
-                    metrics.endurance || 0, 
+                    metrics.speed || 0,
+                    metrics.endurance || 0,
                     metrics.recovery || 0
                 ],
                 backgroundColor: [
@@ -221,14 +221,14 @@ function displayRecommendations(recommendations) {
 
     recommendations.forEach(rec => {
         let area, advice;
-        
+
         if (rec.includes(':')) {
             [area, advice] = rec.split(':').map(part => part.trim());
         } else {
             area = 'Tip';
             advice = rec;
         }
-        
+
         html += `
             <div class="recommendation-item">
                 <strong>${area}</strong>
@@ -236,7 +236,7 @@ function displayRecommendations(recommendations) {
             </div>
         `;
     });
-    
+
     recommendationsContainer.innerHTML = html;
 }
 
@@ -266,6 +266,6 @@ function updateRecommendations(recommendations) {
             ${rec.split(':')[1]}
         </li>`)
         .join('');
-    document.getElementById('recommendations').innerHTML = 
+    document.getElementById('recommendations').innerHTML =
         `<ul class="recommendations-list">${recommendationsHtml}</ul>`;
 }

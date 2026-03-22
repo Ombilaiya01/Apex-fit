@@ -1,5 +1,5 @@
 import { auth, db } from './config/firebase-config.js';
-import { doc, setDoc, getDoc } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+import { doc, setDoc, getDoc } from 'firebase/firestore';
 import { getGeminiResponse } from './config/gemini-config.js';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.body-part').forEach(button => {
         button.addEventListener('click', (e) => {
             // Remove selected class from all buttons
-            document.querySelectorAll('.body-part').forEach(btn => 
+            document.querySelectorAll('.body-part').forEach(btn =>
                 btn.classList.remove('selected'));
             // Add selected class to clicked button
             e.target.classList.add('selected');
@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     elements.userName.textContent = userData.displayName || 'Athlete';
                 }
                 if (elements.activityLevel) {
-                    elements.activityLevel.textContent = 
+                    elements.activityLevel.textContent =
                         `${assessmentData.trainingHours || '0-5'} hrs/week`;
                 }
                 if (elements.riskLevel) {
@@ -104,7 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function calculateRiskLevel(userData, assessmentData) {
     let riskScore = 0;
-    
+
     // Consider training hours
     const trainingHours = {
         '0-5': 1,
@@ -112,7 +112,7 @@ function calculateRiskLevel(userData, assessmentData) {
         '10-15': 3,
         '15+': 4
     }[assessmentData.trainingHours] || 1;
-    
+
     // Consider YoYo test level
     const performanceLevel = {
         'Beginner': 3,
@@ -173,18 +173,18 @@ function displayPreventionPlan(plan) {
                 </h2>
                 <ul class="plan-list">
                     ${content
-                        .filter(line => line.trim().startsWith('*'))
-                        .map(line => `
+                .filter(line => line.trim().startsWith('*'))
+                .map(line => `
                             <li class="plan-item">
                                 ${line
-                                    .replace('*', '')
-                                    .trim()
-                                    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-                                    .replace(/\*(.*?)\*/g, '<em>$1</em>')
-                                }
+                        .replace('*', '')
+                        .trim()
+                        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                        .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                    }
                             </li>
                         `)
-                        .join('')}
+                .join('')}
                 </ul>
             </div>
         `;

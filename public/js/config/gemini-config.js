@@ -1,4 +1,4 @@
-const API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent';
+const API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent';
 // Read API key from environment (Vite) with fallback to an empty string
 const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY || '';
 const MAX_RETRIES = 3;
@@ -8,7 +8,7 @@ export async function getGeminiResponse(prompt) {
     for (let attempt = 1; attempt <= MAX_RETRIES; attempt++) {
         try {
             console.log(`Attempt ${attempt} of ${MAX_RETRIES}`);
-            
+
             if (!GEMINI_API_KEY) throw new Error('GEMINI_API_KEY is not defined');
 
             const response = await fetch(`${API_URL}?key=${GEMINI_API_KEY}`, {
@@ -40,10 +40,10 @@ export async function getGeminiResponse(prompt) {
 
         } catch (error) {
             console.warn(`Attempt ${attempt} failed:`, error.message);
-            
+
             if (attempt === MAX_RETRIES) {
-                console.error('All attempts failed, using fallback response');
-                return getFallbackResponse(prompt);
+                console.error('All attempts failed, using fallback response. Error:', error.message);
+                return `*(Note: AI service unavailable - ${error.message})*\n\n` + getFallbackResponse(prompt);
             }
 
             // Exponential backoff

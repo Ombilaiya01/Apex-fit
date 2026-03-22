@@ -1,5 +1,5 @@
 import { auth, db } from './config/firebase-config.js';
-import { doc, setDoc, getDoc } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+import { doc, setDoc, getDoc } from 'firebase/firestore';
 
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('initialAssessment');
@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
         currentUser = user;
-        
+
         // Check if assessment already exists
         try {
             const assessmentDoc = await getDoc(doc(db, 'assessments', user.uid));
@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
-        
+
         if (!currentUser) {
             alert('Please login first');
             return;
